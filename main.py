@@ -8,6 +8,7 @@
 import asyncio
 import logging
 import os
+import re
 import time
 
 from aiohttp import web
@@ -23,9 +24,41 @@ STATE = {"bot": "not_started"}   # not_started | up | error
 
 
 # ---------- сайт ----------
-async def handle_index(request):
-    return web.FileResponse(os.path.join(BASE_DIR, "index.html"), headers={"Cache-Control": "no-cache"})
+SITE_DIR = os.path.dirname(os.path.abspath(__file__))
+# Сайт: страницы и файлы лежат рядом с main.py. Отдаём только безопасные расширения (код .py, .txt, .jpg бота не отдаём).
+_SITE_EXT = {".html", ".css", ".js", ".svg", ".ico", ".png", ".webp"}
+_SITE_NAME_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_-]{0,39}(\.[A-Za-z0-9]{2,5})?$")
 
+def _site_file(name: str):
+    """'rules' -> rules.html, 'style.css' -> style.css. Возвращает путь или None."""
+    if not _SITE_NAME_RE.match(name):
+        return None
+    base, ext = os.path.splitext(name)
+    fname = base + ".html" if not ext else name
+    if os.path.splitext(fname)[1].lower() not in _SITE_EXT:
+        return None
+    path = os.path.join(SITE_DIR, fname)
+    return path if os.path.isfile(path) else None
+
+async def _site_404():
+    page = os.path.join(SITE_DIR, "404.html")
+    if os.path.isfile(page):
+        return web.FileResponse(page, status=404, headers={"Cache-Control": "no-cache"})
+    return web.Response(status=404, text="404 — страница не найдена")
+
+async def handle_index(request):
+    """Главная."""
+    path = _site_file("index")
+    if path:
+        return web.FileResponse(path, headers={"Cache-Control": "no-cache"})
+    return web.Response(text="index.html не найден")
+
+async def handle_page(request):
+    """Остальные страницы и файлы сайта: /rules, /privacy, /style.css ..."""
+    path = _site_file(request.match_info["name"])
+    if path:
+        return web.FileResponse(path, headers={"Cache-Control": "no-cache"})
+    return await _site_404()
 
 async def handle_health(request):
     return web.Response(text="ok")
@@ -55,6 +88,7 @@ async def start_web():
     app.router.add_get("/", handle_index)
     app.router.add_get("/health", handle_health)
     app.router.add_get("/api/status", handle_status)
+    app.router.add_get("/{name}", handle_page)
     runner = web.AppRunner(app)
     await runner.setup()
     await web.TCPSite(runner, "0.0.0.0", PORT).start()
