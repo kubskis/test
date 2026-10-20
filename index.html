@@ -3,81 +3,68 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tower of Secrets</title>
-<meta name="description" content="Tower of Secrets — секреты, саботёры и игры в Telegram.">
-<meta name="theme-color" content="#0e0b1a">
-<style>
-  :root{
-    --bg:#0e0b1a; --card:#181330; --line:#2b2350; --text:#f1eefc; --muted:#a79fc9;
-    --accent:#8b5cf6; --accent2:#f472b6; --ok:#34d399; --bad:#f87171;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{
-    min-height:100vh;background:radial-gradient(1200px 600px at 50% -10%,#2a1b5e 0%,var(--bg) 60%);
-    color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-    display:flex;flex-direction:column;align-items:center;padding:0 16px;
-  }
-  header{width:100%;max-width:880px;display:flex;justify-content:space-between;align-items:center;padding:20px 0}
-  .logo{font-weight:800;letter-spacing:.3px}
-  .logo span{color:var(--accent2)}
-  .status{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}
-  .dot{width:10px;height:10px;border-radius:50%;background:var(--muted)}
-  .dot.ok{background:var(--ok);box-shadow:0 0 10px var(--ok)}
-  .dot.bad{background:var(--bad)}
-  main{width:100%;max-width:880px;text-align:center;padding:56px 0 32px}
-  .tower{font-size:64px;line-height:1}
-  h1{font-size:clamp(32px,7vw,56px);margin:16px 0 12px;
-     background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
-  p.lead{color:var(--muted);font-size:clamp(16px,2.6vw,19px);max-width:560px;margin:0 auto 28px;line-height:1.5}
-  .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-  a.btn{display:inline-block;padding:14px 22px;border-radius:14px;text-decoration:none;font-weight:700;color:#fff;
-        background:linear-gradient(90deg,var(--accent),var(--accent2));transition:transform .15s}
-  a.btn:hover{transform:translateY(-2px)}
-  a.btn.alt{background:transparent;border:1px solid var(--line);color:var(--text)}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:56px;text-align:left}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
-  .card h3{font-size:17px;margin-bottom:6px}
-  .card p{color:var(--muted);font-size:14.5px;line-height:1.5}
-  footer{margin-top:auto;padding:28px 0;color:var(--muted);font-size:13px;text-align:center}
-</style>
+<title>Tower of Hell Secrets — поддержка и секретки</title>
+<meta name="description" content="Поддержка игроков, секретки, фарм-серверы и заявки в команду. Всё в Telegram-боте.">
+<meta name="theme-color" content="#0d0a1c">
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
-<header>
-  <div class="logo">Tower of <span>Secrets</span></div>
-  <div class="status"><span class="dot" id="dot"></span><span id="st">проверяю…</span></div>
-</header>
-
-<main>
-  <div class="tower">🏰</div>
-  <h1>Tower of Secrets</h1>
-  <p class="lead">Тестовая страница. Если вы её видите, значит, сайт на домене работает.</p>
-  <div class="btns">
-    <a class="btn" href="https://t.me/ToHSecrets_bot">Открыть бота</a>
-    <a class="btn alt" href="https://t.me/ToHSecretss">Наш канал</a>
-  </div>
-
+<nav class="nav"><div class="wrap">
+  <a class="logo" href="/">Tower of Hell <b>Secrets</b></a>
+  <div class="links" id="links"><a href="/" class=on>Главная</a><a href="/services">Услуги</a><a href="/privacy">Конфиденциальность</a><a href="https://t.me/ToHSecretss">Канал</a></div>
+  <div class="status" title="Состояние бота"><span class="dot" id="dot"></span><span id="st">проверяю…</span></div>
+  <button class="burger" id="burger" aria-label="Меню" aria-expanded="false">☰</button>
+</div></nav>
+<header class="hero"><div class="wrap">
+  <span class="badge">🏰 Сообщество и поддержка игроков</span>
+  <h1>Секретки, поддержка и команда — <span>в одном боте</span></h1>
+  <p class="lead">Пишите в поддержку, подавайте жалобы и заявки, следите за секретками и фарм-серверами. Всё работает в Telegram.</p>
+  <div class="btns"><a class="btn" href="https://t.me/ToHSecrets_bot">Открыть бота</a><a class="btn alt" href="https://t.me/ToHSecretss">Канал с секретками</a></div>
+</div></header>
+<section id="features"><div class="wrap">
+  <h2>Что умеет бот</h2><p class="sub">Всё, что нужно игроку, собрано в одном меню.</p>
   <div class="grid">
-    <div class="card"><h3>🔒 Секреты</h3><p>Анонимные секреты, которые попадают в канал.</p></div>
-    <div class="card"><h3>🎭 Игры</h3><p>Саботёры, мутаторы и другие режимы.</p></div>
-    <div class="card"><h3>💬 Поддержка</h3><p>Ответим на вопросы прямо в боте.</p></div>
+    <div class="card"><div class="ic">🔮</div><h3>Секретки</h3><p>Актуальные секретки и фарм-серверы публикуются в канале. Закрытые серверы помечаются автоматически.</p></div>
+    <div class="card"><div class="ic">🚨</div><h3>Жалобы</h3><p>Расскажите о нарушителе, приложите доказательства. Обращение попадёт к команде.</p></div>
+    <div class="card"><div class="ic">😡</div><h3>Обжалование бана</h3><p>Считаете блокировку ошибочной? Подайте заявку, и её рассмотрят.</p></div>
+    <div class="card"><div class="ic">❓</div><h3>Вопросы</h3><p>Задайте вопрос команде. Ответ придёт прямо в чат с ботом.</p></div>
+    <div class="card"><div class="ic">💎</div><h3>Платные услуги</h3><p>Дополнительные возможности за Telegram Stars. <a href="/services">Подробнее</a></p></div>
+    <div class="card"><div class="ic">👥</div><h3>Приглашайте друзей</h3><p>Зовите друзей в канал и получайте бонусы за подтверждённые приглашения.</p></div>
   </div>
-</main>
-
-<footer>© Tower of Secrets</footer>
-
-<script>
-  // проверка статуса бота (тест связи сайта с ботом)
-  fetch('/api/status', {cache:'no-store'})
-    .then(r => r.json())
-    .then(d => {
-      const ok = d && d.ok && d.bot === "up";
-      document.getElementById('dot').className = 'dot ' + (ok ? 'ok' : 'bad');
-      document.getElementById('st').textContent = ok ? 'бот работает' : 'есть проблемы';
-    })
-    .catch(() => {
-      document.getElementById('dot').className = 'dot bad';
-      document.getElementById('st').textContent = 'нет связи';
-    });
-</script>
+</div></section>
+<section class="alt" id="how"><div class="wrap">
+  <h2>Как начать</h2><p class="sub">Три шага, это займёт минуту.</p>
+  <div class="steps">
+    <div class="step"><h3>Откройте бота</h3><p>Нажмите «Открыть бота» и отправьте <b>/start</b>.</p></div>
+    <div class="step"><h3>Подпишитесь на канал</h3><p>Бот может попросить подписаться на <b>@ToHSecretss</b>, он подскажет, как.</p></div>
+    <div class="step"><h3>Выберите раздел</h3><p>Жалоба, вопрос, секретки или услуги — всё в меню под сообщением.</p></div>
+  </div>
+</div></section>
+<section id="team"><div class="wrap">
+  <h2>Хотите в команду?</h2><p class="sub">Мы набираем помощников. Заявки подаются прямо в боте.</p>
+  <div class="join">
+    <div class="card"><div class="ic">📝</div><h3>Хелперы</h3><p>Помогайте игрокам: отвечайте на обращения и разбирайте жалобы.</p><a class="btn" href="https://t.me/ToHSecrets_bot">Подать заявку</a></div>
+    <div class="card"><div class="ic">🔍</div><h3>Искатели секреток</h3><p>Находите секретки и делитесь ими с сообществом.</p><a class="btn" href="https://t.me/ToHSecrets_bot">Подать заявку</a></div>
+  </div>
+</div></section>
+<section class="alt" id="faq"><div class="wrap">
+  <h2>Частые вопросы</h2><p class="sub">Не нашли ответ? Спросите в боте.</p>
+  <div class="faq">
+    <details><summary>Это бесплатно?</summary><p>Поддержка, жалобы и вопросы бесплатны. Платные услуги необязательны и оплачиваются Telegram Stars прямо в боте.</p></details>
+    <details><summary>Почему бот просит подписаться на канал?</summary><p>Канал — главное место с секретками и новостями. Подписка помогает ничего не пропускать.</p></details>
+    <details><summary>Как быстро отвечают?</summary><p>Время ответа зависит от загрузки команды. Все обращения приходят хелперам сразу, ответ вы получите прямо в чате с ботом.</p></details>
+    <details><summary>Что делать, если меня заблокировали?</summary><p>Нажмите «Обжалование бана» в боте и расскажите, что произошло. Заявку рассмотрит команда.</p></details>
+    <details><summary>Где хранятся мои данные?</summary><p>Что именно мы храним и зачем, описано на странице <a href="/privacy">«Конфиденциальность»</a>.</p></details>
+    <details><summary>Проект связан с Roblox?</summary><p>Нет. Это независимый проект сообщества. Roblox и Tower of Hell — торговые марки их владельцев.</p></details>
+  </div>
+</div></section>
+<section><div class="wrap cta"><h2>Готовы начать?</h2><p class="sub">Откройте бота и отправьте /start.</p>
+  <div class="btns"><a class="btn" href="https://t.me/ToHSecrets_bot">Открыть бота в Telegram</a></div></div></section>
+<footer><div class="wrap">
+  <div class="fl"><a href="/">Главная</a><a href="/services">Услуги</a><a href="/privacy">Конфиденциальность</a><a href="https://t.me/ToHSecretss">Канал</a><a href="https://t.me/ToHSecrets_bot">Бот</a></div>
+  <p>© Tower of Hell Secrets</p>
+  <p>Независимый проект сообщества. Не связан с Roblox Corporation.</p>
+</div></footer>
+<script src="/site.js"></script>
 </body>
 </html>
